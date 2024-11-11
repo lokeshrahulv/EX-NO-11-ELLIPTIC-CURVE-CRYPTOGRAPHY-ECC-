@@ -26,10 +26,10 @@ To Implement ELLIPTIC CURVE CRYPTOGRAPHY(ECC)
 ```
 #include <stdio.h> 
 #include <stdint.h> 
-#define PRIME 17 // Define a small prime for the field 
+#define PRIME 17
 const int a = 2; 
 const int b = 2; 
-typedef struct { 
+typedef struct {
 int x; 
 int y; 
 } Point; 
@@ -38,7 +38,7 @@ k = k % p;
 for (int x = 1; x < p; x++) { 
 if ((k * x) % p == 1) return x; 
 } 
-return -1; // Return -1 if no modular inverse exists 
+return -1; 
 } 
 Point point_double(Point P) { 
 if (P.y == 0) return (Point){0, 0}; 
@@ -61,7 +61,7 @@ if (y3 < 0) y3 += PRIME;
 return (Point){x3, y3}; 
 } 
 Point scalar_mult(int k, Point P) { 
-Point R = {0, 0}; // Initialize to the point at infinity 
+Point R = {0, 0}; 
 Point Q = P; 
 while (k > 0) { 
 if (k % 2 == 1) { 
@@ -73,7 +73,7 @@ k /= 2;
 return R; 
 } 
 int main() { 
-Point G = {5, 1}; // Base point on the curve 
+Point G = {5, 1}; 
 int k = 2; // Scalar multiplier 
 Point R = scalar_mult(k, G); 
 printf("Result of %d * G = (%d, %d)\n", k, R.x, R.y); 
